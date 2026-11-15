@@ -13,11 +13,17 @@ Der MCP-Server selbst wird von Zuno betrieben und ist nicht Bestandteil dieses P
 
 ## Clients
 
-- **ChatGPT:** Plugin-Paket mit Skills und MCP-Verbindung verwenden, sofern der Account die Installation benutzerdefinierter MCP-Plugins unterstützt.
-- **Claude:** Zuno als Remote-MCP-Connector mit OAuth verbinden. Skills abhängig vom verwendeten Claude-Client separat als Skills installieren/importieren; siehe [Claude](docs/claude.md).
+- **ChatGPT/Codex:** Das GitHub-Repository kann als Marketplace-Quelle registriert werden; siehe [ChatGPT](docs/chatgpt.md).
+- **Claude:** Das GitHub-Repository kann als Marketplace-Quelle registriert werden; siehe [Claude](docs/claude.md).
 - **Codex / Claude Code:** Die SKILL.md-Dateien folgen dem portablen Agent-Skills-Format. MCP-Verbindung separat konfigurieren, sofern die Plugin-Installation sie nicht übernimmt.
 
 MCP- und Skill-Unterstützung hängt vom jeweiligen Client, Tarif und Workspace ab. Die Client-Anleitungen sind deshalb keine Garantie, dass eine einzige Installationsdatei überall identisch importiert werden kann.
+
+## GitHub-Releases
+
+Ein Push eines Tags im Format `vMAJOR.MINOR.PATCH` startet den Workflow unter `.github/workflows/release.yml`. Er prüft die Versionsangaben in beiden Plugin- und Marketplace-Manifesten, baut ein ZIP mit den Client-Manifests, MCP-Konfigurationen und Skills und hängt ZIP sowie SHA-256-Prüfsumme an die GitHub Release-Seite an. Vor dem Tag müssen alle vier Versionsangaben in `plugin.json`, `.claude-plugin/plugin.json` und den beiden Marketplace-Manifesten auf dieselbe Version wie der Tag gesetzt werden.
+
+Das ZIP ist für direkten Upload bzw. Archiv-Distribution gedacht. Für die Installation über GitHub-Marketplaces wird es nicht benötigt; dafür dienen die Marketplace-Manifeste im Repository.
 
 ## Prompt-Pflege
 

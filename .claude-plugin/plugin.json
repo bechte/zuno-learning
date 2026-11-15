@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin.json",
+  "name": "zuno-learning",
+  "version": "0.1.0",
+  "description": "Connect AI clients to Zuno to manage courses, create cards from photos, and enrich learning cards.",
+  "author": {
+    "name": "Zuno"
+  }
+}

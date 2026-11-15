@@ -1,12 +1,24 @@
 # Claude
 
-Claude-Clients können den Zuno-MCP als Remote-Server verbinden. Je nach Claude-Produkt unterscheiden sich Einrichtung, OAuth-Unterstützung und Skills-Import.
+Das Repository enthält ein Claude-kompatibles Marketplace-Manifest unter `.claude-plugin/marketplace.json`. Es kann direkt aus GitHub als Marketplace registriert werden; ein ZIP ist dafür nicht nötig.
 
-1. In Claude die MCP-/Connector-Einstellungen öffnen und einen Remote-MCP-Server hinzufügen.
-2. Serveradresse verwenden: `https://api.zuno.cards/mcp/zuno`.
-3. OAuth starten, mit dem Zuno-Konto anmelden und die Zustimmung in Zuno erteilen.
-4. Die Skills aus `skills/` separat installieren/importieren, sofern der genutzte Claude-Client Skills unterstützt.
+## Claude App / Claude Desktop
 
-Für Claude Code kann der MCP alternativ über dessen MCP-Einrichtung hinzugefügt und die Skill-Verzeichnisse in den verfügbaren Skills-Ordner kopiert werden. Zugangstokens gehören ausschließlich in den OAuth-Flow des Clients, niemals in dieses Repository.
+1. **Customize → Plugins → Add → Add marketplace** öffnen.
+2. **Add from a repository** wählen und `bechte/zuno-learning` eingeben.
+3. Das Marketplace-Verzeichnis synchronisieren und **Zuno Learning** installieren.
+4. Beim Verbinden OAuth starten, mit dem Zuno-Konto anmelden und die Zustimmung erteilen.
+5. Den Connector/Plugin im Chat aktivieren.
 
-Die Verfügbarkeit der Remote-Connectoren und Skills richtet sich nach Claude-Produkt, Version, Tarif und Workspace. Diese Anleitung muss vor Veröffentlichung mit den aktuellen Claude-Importwegen getestet werden.
+## Claude Code
+
+Im CLI kann die Quelle und das Plugin direkt hinzugefügt werden:
+
+```text
+/plugin marketplace add bechte/zuno-learning
+/plugin install zuno-learning@zuno
+```
+
+Nach der Installation OAuth über den MCP-Login abschließen. Skills und MCP-Konfiguration werden gemeinsam vom Plugin geladen.
+
+Für Team- und Enterprise-Organisationen kann ein Administrator eine Marketplace-Quelle einschränken oder zentral bereitstellen. Der OAuth-Zugriff bleibt benutzerspezifisch.

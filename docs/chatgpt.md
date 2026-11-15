@@ -1,13 +1,21 @@
-# ChatGPT
+# ChatGPT und Codex
 
-Das Plugin-Paket enthält `plugin.json`, `mcp.json` und die Skills. ChatGPT-Plugin- und benutzerdefinierte MCP-Verfügbarkeit unterscheidet sich je nach Account und Workspace.
+Das Repository enthält `.agents/plugins/marketplace.json`. Ein GitHub-Workspace-Marketplace-Import benötigt kein ZIP; GitHub liefert das Plugin direkt aus dem Repository und kann es regelmäßig synchronisieren.
 
-1. Plugin-Paket in einem ChatGPT-Account installieren, der benutzerdefinierte MCP-Verbindungen unterstützt.
-2. Die Verbindung zum Zuno-Server bestätigen.
-3. Den Zuno-Login abschließen und in Zuno die Zustimmung erteilen.
-4. Bei der Verbindung die Zuno-Berechtigungen prüfen; sie bleiben global in Zuno gesteuert.
-5. Einen Skill aus dem Paket aufrufen und die Werkzeugverfügbarkeit prüfen.
+## ChatGPT-Workspace
 
-Serveradresse: `https://api.zuno.cards/mcp/zuno`.
+Ein Workspace-Administrator kann unter **Admin Console → Plugins → Add → Import marketplace** das Repository `https://github.com/bechte/zuno-learning` importieren. Den Pfad leer lassen und als Branch `main` auswählen. Danach das Plugin und die Workspace-Installationsrichtlinie prüfen. Die Verbindung autorisiert nicht automatisch Zuno-Konten; jeder Nutzer meldet sich per OAuth bei Zuno an.
 
-Falls die Plugin-Paketinstallation nicht verfügbar ist, kann die MCP-Verbindung in den Einstellungen für Apps/Plugins als Remote-Server hinzugefügt werden. Skills müssen dann über den jeweiligen Skills-Importweg des Accounts bereitgestellt werden.
+## ChatGPT Desktop / Codex
+
+In unterstützten Desktop-/Codex-Umgebungen kann das GitHub-Repository als Marketplace-Quelle hinzugefügt werden:
+
+```sh
+codex plugin marketplace add bechte/zuno-learning
+```
+
+Anschließend das Plugin im Plugin-Verzeichnis installieren. OAuth verbindet den Nutzer mit Zuno.
+
+## ZIP-Veröffentlichung
+
+Ein Release-ZIP ist eine Alternative für Upload oder manuelle Verteilung, aber nicht nötig, wenn der Workspace Marketplace direkt aus GitHub importiert wird. Der Import von GitHub-Marketplaces ist eine Workspace-Admin-Funktion. Die verfügbaren Schreibaktionen hängen außerdem von ChatGPT-Plan und Workspace-Berechtigungen ab.

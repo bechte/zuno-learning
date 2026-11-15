@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/marketplace.schema.json",
+  "name": "zuno-learning",
+  "plugins": [
+    {
+      "name": "zuno-learning",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "description": "Connect AI clients to Zuno to manage courses, create cards from photos, and enrich learning cards.",
+      "version": "0.1.0"
+    }
+  ]
+}
