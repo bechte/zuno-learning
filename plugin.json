@@ -1,0 +1,26 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "zuno-learning",
+  "version": "0.1.0",
+  "description": "Connect AI clients to Zuno to manage courses, create cards from photos, and enrich learning cards.",
+  "author": {
+    "name": "Zuno"
+  },
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Zuno",
+        "shortDescription": "Kurse und Lernkarten",
+        "longDescription": "Verbindet Zuno-Kurse und Lernkarten mit deinem KI-Client. Verwaltet Kursstrukturen, erstellt Lernkarten aus Fotos und ergänzt fehlende Kartendaten mit Zunos Promptregeln.",
+        "developerName": "Zuno",
+        "category": "Education & Research",
+        "capabilities": [],
+        "defaultPrompt": [
+          "Hilf mir, meine Zuno-Kurse und Lernkarten zu verwalten.",
+          "Erstelle Lernkarten aus diesen Fotos und ordne sie meinem Zuno-Kurs zu.",
+          "Ergänze fehlende Angaben meiner Lernkarten mit Zunos Vervollständigungsregeln."
+        ]
+      }
+    }
+  }
+}
