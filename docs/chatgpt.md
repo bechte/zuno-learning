@@ -8,10 +8,10 @@ Ein Workspace-Administrator kann das Repository unter **Admin Console → Plugin
 
 - `.agents/plugins/marketplace.json` listet das Plugin für den Repository-Marketplace.
 - `plugin.json` enthält die portable Plugin-Identität und OpenAI-Oberflächenmetadaten.
-- `mcp.json` verbindet sich per Streamable HTTP mit `https://api.zuno.cards/mcp/zuno` und deklariert OAuth mit CIMD.
+- `mcp.json` verbindet sich per Streamable HTTP mit `https://api.zuno.cards/mcp/zuno`. Der aktuelle ChatGPT/Codex-Desktop-Loader verwirft den dokumentierten OpenAI-OAuth-Erweiterungsblock in dieser Datei; der Workaround lässt den Host OAuth anhand der Server-Challenge beim ersten Toolaufruf starten. Siehe [Loader-Fehler #53658](https://github.com/openai/codex/issues/53658).
 - Die gemeinsamen Skills liegen in `skills/`.
 
-Die Installation verbindet nicht automatisch ein Zuno-Konto. Jeder Nutzer meldet sich beim ersten Verbinden per OAuth an und erteilt die Zustimmung.
+Der GitHub-Import verbindet nicht automatisch ein Zuno-Konto. Jeder Nutzer muss beim ersten Toolaufruf den OAuth-Dialog abschließen. Der Desktop-Workaround wurde nicht live gegen Zuno verifiziert.
 
 ## ZIP-Verteilung
 

@@ -3,17 +3,7 @@
   "mcpServers": {
     "zuno": {
       "type": "streamable-http",
-      "url": "https://api.zuno.cards/mcp/zuno",
-      "extensions": {
-        "com.openai": {
-          "auth": {
-            "type": "oauth",
-            "client": {
-              "mode": "cimd"
-            }
-          }
-        }
-      }
+      "url": "https://api.zuno.cards/mcp/zuno"
     }
   }
 }

@@ -25,7 +25,7 @@ Die drei Skills unter `skills/` sind gemeinsam und werden von den unterstützten
 | ChatGPT / Codex | `.agents/plugins/marketplace.json`, `plugin.json`, `mcp.json` |
 | Claude Code | `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.mcp.json` |
 
-Alle MCP-Dateien liegen am Plugin-Stamm. `mcp.json` nutzt das portable Agent-Plugins-Format samt OpenAI-OAuth-Metadaten. `.mcp.json` nutzt Claudes MCP-Format; es verweist auf denselben Server und Claude Code startet OAuth anhand der Server-Metadaten. Die Dateiformate sind client-spezifisch und nicht austauschbar.
+Alle MCP-Dateien liegen am Plugin-Stamm. `mcp.json` enthält den Streamable-HTTP-Endpunkt für OpenAI-Clients. Der OpenAI-Desktop-Loader verwirft derzeit den dokumentierten OAuth-Erweiterungsblock; daher wird OAuth über die Server-Challenge beim ersten Toolaufruf gestartet. `.mcp.json` nutzt Claudes MCP-Format und denselben Endpunkt. Die Dateiformate sind client-spezifisch und nicht austauschbar.
 
 ## Releases
 

@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Zuno skills and MCP connection for managing courses and learning cards.",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
