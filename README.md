@@ -1,34 +1,38 @@
-# Zuno AI Plugin
+# Zuno Learning
 
-Dieses Projekt bündelt die Verbindung zum bestehenden Zuno-MCP-Server und portable Skills für wiederkehrende Lernkartenabläufe.
+Zuno Learning verbindet ChatGPT, Codex und Claude Code mit dem bestehenden Zuno-MCP-Server und ergänzt die Verbindung um gemeinsame Skills für Lernkartenabläufe.
 
-## Enthalten
+## Funktionen
 
-- `mcp.json`: Verbindung zum Remote-MCP unter `https://api.zuno.cards/mcp/zuno` mit OAuth.
-- `skills/zuno-course-management`: Kurse, Lektionen, Sektionen, Seiten und Karten verwalten.
-- `skills/zuno-photo-to-cards`: Fotos mit dem Bildmodell des jeweiligen KI-Clients auswerten und Karten über Zuno anlegen.
-- `skills/zuno-card-enrichment`: Zunos KI-Vervollständigungsprompt clientseitig anwenden und fehlende Felder über MCP ergänzen.
+- Kurse, Lektionen, Sektionen, Seiten und Karten mit Zuno verwalten.
+- Lernkarten aus Fotos vorbereiten und nach Vorschau sowie Freigabe anlegen.
+- Fehlende Kartenfelder nach Zunos Vervollständigungsregeln ergänzen.
 
-Der MCP-Server selbst wird von Zuno betrieben und ist nicht Bestandteil dieses Pakets. Die Einrichtung in Zuno erfordert ein Konto, aktivierten MCP-Zugriff und die OAuth-Zustimmung. Das Paket enthält keine API-Schlüssel.
+Der MCP-Server wird von Zuno betrieben und ist nicht Bestandteil dieses Repositories. Für den Zugriff sind ein Zuno-Konto, aktivierter MCP-Zugriff und die OAuth-Zustimmung erforderlich. Das Repository enthält keine API-Schlüssel.
 
-## Clients
+## Einstieg nach Client
 
-- **ChatGPT/Codex:** Das GitHub-Repository kann als Marketplace-Quelle registriert werden; siehe [ChatGPT](docs/chatgpt.md).
-- **Claude:** Das GitHub-Repository kann als Marketplace-Quelle registriert werden; siehe [Claude](docs/claude.md).
-- **Codex / Claude Code:** Die SKILL.md-Dateien folgen dem portablen Agent-Skills-Format. MCP-Verbindung separat konfigurieren, sofern die Plugin-Installation sie nicht übernimmt.
+- [ChatGPT](docs/chatgpt.md): Workspace Marketplace und Installation.
+- [Codex](docs/codex.md): Repository-Marketplace über Codex CLI und Plugin-Verzeichnis.
+- [Claude Code](docs/claude.md): Claude Marketplace und OAuth-Verbindung.
 
-MCP- und Skill-Unterstützung hängt vom jeweiligen Client, Tarif und Workspace ab. Die Client-Anleitungen sind deshalb keine Garantie, dass eine einzige Installationsdatei überall identisch importiert werden kann.
+## Aufbau
 
-## GitHub-Releases
+Die drei Skills unter `skills/` sind gemeinsam und werden von den unterstützten Clients geladen. Die Clients verwenden unterschiedliche Marketplace-, Manifest- und MCP-Dateien:
 
-Ein Push eines Tags im Format `vMAJOR.MINOR.PATCH` startet den Workflow unter `.github/workflows/release.yml`. Er prüft die Versionsangaben in beiden Plugin- und Marketplace-Manifesten, baut ein ZIP mit den Client-Manifests, MCP-Konfigurationen und Skills und hängt ZIP sowie SHA-256-Prüfsumme an die GitHub Release-Seite an. Vor dem Tag müssen alle vier Versionsangaben in `plugin.json`, `.claude-plugin/plugin.json` und den beiden Marketplace-Manifesten auf dieselbe Version wie der Tag gesetzt werden.
+| Client | Einstieg und Konfiguration |
+| --- | --- |
+| ChatGPT / Codex | `.agents/plugins/marketplace.json`, `plugin.json`, `mcp.json` |
+| Claude Code | `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`, `.mcp.json` |
 
-Das ZIP ist für direkten Upload bzw. Archiv-Distribution gedacht. Für die Installation über GitHub-Marketplaces wird es nicht benötigt; dafür dienen die Marketplace-Manifeste im Repository.
+Alle MCP-Dateien liegen am Plugin-Stamm. `mcp.json` nutzt das portable Agent-Plugins-Format samt OpenAI-OAuth-Metadaten. `.mcp.json` nutzt Claudes MCP-Format; es verweist auf denselben Server und Claude Code startet OAuth anhand der Server-Metadaten. Die Dateiformate sind client-spezifisch und nicht austauschbar.
 
-## Prompt-Pflege
+## Releases
 
-Die Prompt-Ressource zur Vervollständigung wurde aus Zunos `AiPromptCatalog::vocabularyEnrichment` abgeleitet. Bei Änderungen am Zuno-Prompt muss die Plugin-Kopie synchronisiert werden. Siehe [Prompt-Synchronisierung](docs/prompt-sync.md).
+Ein Push eines Tags im Format `vMAJOR.MINOR.PATCH` startet `.github/workflows/release.yml`. Der Workflow prüft die Versionsangaben in den vier Plugin- und Marketplace-Manifesten, erstellt ein ZIP mit den Plugin-Manifests, MCP-Konfigurationen und Skills und hängt ZIP sowie SHA-256-Prüfsumme an das GitHub Release an. Vor dem Tag müssen die Versionsangaben in `plugin.json`, `.claude-plugin/plugin.json` und den beiden Marketplace-Manifesten zur Tag-Version passen.
 
-## Status
+Das ZIP ist für direkten Upload oder manuelle Verteilung gedacht. Die Marketplace-Installation bezieht die Dateien direkt aus dem Repository.
 
-Frühe, lokal vorbereitete Projektversion. Die Manifeststruktur und Skills müssen vor Veröffentlichung mit den aktuellen Importwegen und realen Clientkonten geprüft werden. Die öffentliche MCP-Verbindung wurde bei dieser Vorbereitung nicht live getestet.
+## Pflege der Zuno-Prompts
+
+Die portable Referenz des Vervollständigungsprompts basiert auf Zunos `AiPromptCatalog::vocabularyEnrichment`. Bei Promptänderungen die Kopie synchronisieren; siehe [Prompt-Synchronisierung](docs/prompt-sync.md).

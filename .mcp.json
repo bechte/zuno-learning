@@ -1,7 +1,7 @@
 {
   "mcpServers": {
     "zuno": {
-      "type": "http",
+      "type": "streamable-http",
       "url": "https://api.zuno.cards/mcp/zuno"
     }
   }

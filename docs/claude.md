@@ -1,24 +1,23 @@
-# Claude
+# Claude Code
 
-Das Repository enthält ein Claude-kompatibles Marketplace-Manifest unter `.claude-plugin/marketplace.json`. Es kann direkt aus GitHub als Marketplace registriert werden; ein ZIP ist dafür nicht nötig.
+## Marketplace hinzufügen
 
-## Claude App / Claude Desktop
-
-1. **Customize → Plugins → Add → Add marketplace** öffnen.
-2. **Add from a repository** wählen und `bechte/zuno-learning` eingeben.
-3. Das Marketplace-Verzeichnis synchronisieren und **Zuno Learning** installieren.
-4. Beim Verbinden OAuth starten, mit dem Zuno-Konto anmelden und die Zustimmung erteilen.
-5. Den Connector/Plugin im Chat aktivieren.
-
-## Claude Code
-
-Im CLI kann die Quelle und das Plugin direkt hinzugefügt werden:
+Im Claude Code CLI oder in einer Claude Code-Sitzung:
 
 ```text
 /plugin marketplace add bechte/zuno-learning
 /plugin install zuno-learning@zuno
 ```
 
-Nach der Installation OAuth über den MCP-Login abschließen. Skills und MCP-Konfiguration werden gemeinsam vom Plugin geladen.
+Nach der Installation ein neues Claude-Code-Fenster oder eine neue Sitzung starten. Beim ersten Verbinden im MCP-Bereich OAuth für das Zuno-Konto abschließen. Claude Code verwaltet den OAuth-Ablauf anhand der Metadaten des Remote-MCP-Servers.
 
-Für Team- und Enterprise-Organisationen kann ein Administrator eine Marketplace-Quelle einschränken oder zentral bereitstellen. Der OAuth-Zugriff bleibt benutzerspezifisch.
+## Verwendete Dateien
+
+- `.claude-plugin/marketplace.json` registriert den GitHub-Marktplatz und verweist auf das Plugin im Repository-Stamm.
+- `.claude-plugin/plugin.json` enthält die Claude-Code-Plugin-Metadaten.
+- `.mcp.json` liegt im Plugin-Stammverzeichnis und verbindet sich per `streamable-http` mit `https://api.zuno.cards/mcp/zuno`. Claude Code akzeptiert `streamable-http` als Alias für `http`; OpenAI-spezifische OAuth-Erweiterungen gehören nicht in diese Datei.
+- Die gemeinsamen Skills liegen in `skills/`.
+
+Claude Code kann die Plugin-Konfiguration mit `claude plugin validate .` prüfen. Danach `/plugin` öffnen und unter MCP kontrollieren, ob `zuno` verbunden ist. Eine erfolgreiche Anmeldung in Claude Code bestätigt nicht automatisch den Import in ChatGPT oder Codex; diese Clients haben eigene Marketplace- und MCP-Dateien.
+
+Für Claude.ai und Cowork können sich Marketplace-Import und unterstützte Plugin-Komponenten vom Claude-Code-Ablauf unterscheiden.

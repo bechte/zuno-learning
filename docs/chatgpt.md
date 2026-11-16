@@ -1,21 +1,18 @@
-# ChatGPT und Codex
+# ChatGPT
 
-Das Repository enthält `.agents/plugins/marketplace.json`. Ein GitHub-Workspace-Marketplace-Import benötigt kein ZIP; GitHub liefert das Plugin direkt aus dem Repository und kann es regelmäßig synchronisieren.
+## ChatGPT im Workspace
 
-## ChatGPT-Workspace
+Ein Workspace-Administrator kann das Repository unter **Admin Console → Plugins → Add → Import marketplace** als Marketplace-Quelle hinzufügen. Repository `https://github.com/bechte/zuno-learning`, Branch `main` und den Plugin-Pfad leer lassen, damit die Marketplace-Datei im Repository-Stamm verwendet wird. Danach das Plugin sowie die Installationsrichtlinie prüfen. Der Import ist eine Workspace-Funktion und kann je nach ChatGPT-Plan und Organisationsrichtlinie verfügbar sein.
 
-Ein Workspace-Administrator kann unter **Admin Console → Plugins → Add → Import marketplace** das Repository `https://github.com/bechte/zuno-learning` importieren. Den Pfad leer lassen und als Branch `main` auswählen. Danach das Plugin und die Workspace-Installationsrichtlinie prüfen. Die Verbindung autorisiert nicht automatisch Zuno-Konten; jeder Nutzer meldet sich per OAuth bei Zuno an.
+## Verwendete Dateien
 
-## ChatGPT Desktop / Codex
+- `.agents/plugins/marketplace.json` listet das Plugin für den Repository-Marketplace.
+- `plugin.json` enthält die portable Plugin-Identität und OpenAI-Oberflächenmetadaten.
+- `mcp.json` verbindet sich per Streamable HTTP mit `https://api.zuno.cards/mcp/zuno` und deklariert OAuth mit CIMD.
+- Die gemeinsamen Skills liegen in `skills/`.
 
-In unterstützten Desktop-/Codex-Umgebungen kann das GitHub-Repository als Marketplace-Quelle hinzugefügt werden:
+Die Installation verbindet nicht automatisch ein Zuno-Konto. Jeder Nutzer meldet sich beim ersten Verbinden per OAuth an und erteilt die Zustimmung.
 
-```sh
-codex plugin marketplace add bechte/zuno-learning
-```
+## ZIP-Verteilung
 
-Anschließend das Plugin im Plugin-Verzeichnis installieren. OAuth verbindet den Nutzer mit Zuno.
-
-## ZIP-Veröffentlichung
-
-Ein Release-ZIP ist eine Alternative für Upload oder manuelle Verteilung, aber nicht nötig, wenn der Workspace Marketplace direkt aus GitHub importiert wird. Der Import von GitHub-Marketplaces ist eine Workspace-Admin-Funktion. Die verfügbaren Schreibaktionen hängen außerdem von ChatGPT-Plan und Workspace-Berechtigungen ab.
+Ein GitHub-Release-ZIP ist für Upload oder manuelle Verteilung gedacht. Für einen Workspace Marketplace-Import wird es nicht benötigt.

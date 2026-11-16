@@ -6,10 +6,13 @@
       "name": "zuno-learning",
       "source": {
         "source": "local",
-        "path": "."
+        "path": "./"
       },
       "description": "Connect AI clients to Zuno to manage courses, create cards from photos, and enrich learning cards.",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "interface": {
+        "displayName": "Zuno"
+      }
     }
   ]
 }
